@@ -25,4 +25,6 @@ Se proporcionarán los siguientes materiales:
 ---
 
 En **PlayerMovement.cs** podrán ver un código básico de movimiento 2D listo para usar, requerirán configurar el _InputSystem_ como se indicó en la sesión o como se muestra en el video, debido a que el script utiliza esa misma librería.
+Deberán asignar en **Animator** los siguentes parámetros escritos tal cual como aparecen enlistados:
 
+- speed: con valor inicial 0

@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     PlayerControls controls; // Se llama a la clase PlayerControls para el ImputSystem
     float direction = 0;
+    bool isFacingRight = true;
 
     public float speed = 400f; // Velocidad del jugador
 
     public RigidBody2D playerRB;
+    public Animator animator;
 
     private void Awake() // Función que se llama antes del Start
     {
@@ -37,7 +39,23 @@ public class PlayerMovement : MonoBehaviour
         playerRb.velocity = new Vector2(direction * speed * Time.deltaTime, playerRB.velocity.y); 
         // Se asigna la velocidad del jugador en el eje X según la dirección y la velocidad, 
         // y se mantiene la velocidad en el eje Y
+        animator.SetFloat("speed", Mathf.Abs(direction)); // Se asigna el valor absoluto 
+        // de la dirección a la variable speed del Animator
 
+        if (isFacingRight && direction < 0 || !isFacingRight && direction > 0) 
+        {
+            // Si el jugador está mirando a la derecha y 
+            // se mueve a la izquierda, o si está mirando a la izquierda y 
+            // se mueve a la derecha
+            Flip();
+        }
 
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight; // Se invierte el valor de isFacingRight
+        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        // Se invierte la escala del jugador en el eje X para que mire hacia la dirección opuesta
     }
 }
