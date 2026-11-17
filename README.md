@@ -15,3 +15,10 @@ Se estará trabajando en lo siguiente:
 - Implementación del código para manipulación de objetos
 
 Además que se estará trabajando por equipos en su primer plataformero 2D para conocer un poco más a profundidad este motor gráfico.
+
+Se proporcionarán los siguientes materiales:
+
+- Assets listos para implementar
+- Tilemaps listos para implementar
+- Código prefabricado listo para instalar
+
