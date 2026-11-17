@@ -22,3 +22,7 @@ Se proporcionarán los siguientes materiales:
 - Tilemaps listos para implementar
 - Código prefabricado listo para instalar
 
+---
+
+En **PlayerMovement.cs** podrán ver un código básico de movimiento 2D listo para usar, requerirán configurar el _InputSystem_ como se indicó en la sesión o como se muestra en el video, debido a que el script utiliza esa misma librería.
+
