@@ -31,3 +31,5 @@ Deberán asignar en **Animator** lso siguiente sparámetros escritos tal cual co
 - isGrounded: booleano
 
 El Player deberá contar con un hijo **GameObject empty** colocado sobre sus pies llamado **groundCheck** para detectar que está en el suelo y el salto pueda ejecutarse.
+
+Los assets que usarán para desarrollar este proyecto los pueden descargar haciendo click [aquí](https://assetstore.unity.com/packages/2d/environments/free-platform-game-assets-85838).
