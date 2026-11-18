@@ -25,6 +25,9 @@ Se proporcionarán los siguientes materiales:
 ---
 
 En **PlayerMovement.cs** podrán ver un código básico de movimiento 2D listo para usar, requerirán configurar el _InputSystem_ como se indicó en la sesión o como se muestra en el video, debido a que el script utiliza esa misma librería.
-Deberán asignar en **Animator** los siguentes parámetros escritos tal cual como aparecen enlistados:
+Deberán asignar en **Animator** lso siguiente sparámetros escritos tal cual como aparecen enlistados:
 
-- speed: con valor inicial 0
+- speed: flaot con valor inicial a 0
+- isGrounded: booleano
+
+El Player deberá contar con un hijo **GameObject empty** colocado sobre sus pies llamado **groundCheck** para detectar que está en el suelo y el salto pueda ejecutarse.

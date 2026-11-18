@@ -8,6 +8,12 @@ public class PlayerMovement : MonoBehaviour
     float direction = 0;
     bool isFacingRight = true;
 
+    public float jumpForce = 5f;
+    bool isGrounded;
+    public Transform groundCheck;
+    int numberOfJumps = 0;
+    public LayerMask groundLayer;
+
     public float speed = 400f; // Velocidad del jugador
 
     public RigidBody2D playerRB;
@@ -25,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
             direction = ctx.ReadValue<float>(); // Se obtiene el valor del comando de Move y 
             // se asigna a la variable direction
         };
+
+        controls.Land.Jump.performed += ctx => Jump();
+        
     }
 
     // Start is called before the first frame update
@@ -34,9 +43,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        playerRb.velocity = new Vector2(direction * speed * Time.deltaTime, playerRB.velocity.y); 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        // Se verifica si el jugador está tocando el suelo mediante 
+        // un círculo de colisión en la posición de groundCheck
+
+        animator.SetBool("isGrounded", isGrounded); // Se asigna el valor de isGrounded 
+        // a la variable isGrounded del Animator
+
+        playerRb.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, playerRB.velocity.y); 
         // Se asigna la velocidad del jugador en el eje X según la dirección y la velocidad, 
         // y se mantiene la velocidad en el eje Y
         animator.SetFloat("speed", Mathf.Abs(direction)); // Se asigna el valor absoluto 
@@ -57,5 +73,25 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = !isFacingRight; // Se invierte el valor de isFacingRight
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         // Se invierte la escala del jugador en el eje X para que mire hacia la dirección opuesta
+    }
+
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            numberOfJumps = 0; // Se reinicia el número de saltos realizados
+            playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
+            // Se asigna la velocidad del jugador en el eje Y según la fuerza de salto
+
+            numberOfJumps ++; // Se incrementa el número de saltos realizados
+        }
+        else
+        {
+            if (numberOfJumps == 1)
+            {
+                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
+                numberOfJumps ++;
+            }
+        }
     }
 }
